@@ -11,7 +11,7 @@
 
 **TECHSAS** (*Technology for Efficient & Centralized Handling of Strategic Assets*) adalah platform manajemen aset terpadu berbasis *cloud* dan *QR-Code Digital Passport* yang didesain khusus untuk memberdayakan pelaku usaha mikro, kecil, dan menengah (UMKM) padat aset (*asset-heavy*) di Indonesia.
 
-Melalui pendekatan estetika **Apple UI/UX Design System**, TECHSAS mendemokratisasi teknologi pengelolaan aset berstandar *enterprise*—memungkinkan pemilik bisnis melacak kondisi fisik barang modal, mencatat riwayat pemeliharaan, mencegah kehilangan/penukaran, serta menghitung nilai buku dan penyusutan akuntansi secara otomatis tanpa memerlukan alat *scanner* mahal.
+Melalui pendekatan estetika **Apple UI/UX Design System**, TECHSAS mendemokratisasi teknologi pengelolaan aset berstandar *enterprise* memungkinkan pemilik bisnis melacak kondisi fisik barang modal, mencatat riwayat pemeliharaan, mencegah kehilangan/penukaran, serta menghitung nilai buku dan penyusutan akuntansi secara otomatis tanpa memerlukan alat *scanner* mahal.
 
 ---
 
