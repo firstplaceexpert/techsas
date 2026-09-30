@@ -7,7 +7,7 @@
 
 ---
 
-## 📌 Sekilas Proyek
+## Sekilas Proyek
 
 **TECHSAS** (*Technology for Efficient & Centralized Handling of Strategic Assets*) adalah platform manajemen aset terpadu berbasis *cloud* dan *QR-Code Digital Passport* yang didesain khusus untuk memberdayakan pelaku usaha mikro, kecil, dan menengah (UMKM) padat aset (*asset-heavy*) di Indonesia.
 
@@ -15,30 +15,30 @@ Melalui pendekatan estetika **Apple UI/UX Design System**, TECHSAS mendemokratis
 
 ---
 
-## 🏢 Solusi Multi-Sektor UMKM yang Didukung
+## Solusi Multi-Sektor UMKM yang Didukung
 
 TECHSAS dirancang secara universal untuk berbagai industri UMKM berbasis aset:
 
-1. **🚗 Rental Kendaraan & Armada (`DriveNusa Fleet`):** Melacak servis berkala mobil/motor, odometer km, perlengkapan toolkit, dan riwayat klaim penyewa.
-2. **📸 Rental Kamera & Studio Multimedia (`KameraPro Studio`):** Melacak lensa kamera bernilai puluhan juta, sensor cleaning, jamur (*fungus*), dan aksesoris audio.
-3. **🎮 Rental PS VIP & Gaming Lounge (`Nexus VIP Lounge`):** Mengamankan stik DualSense controller dari analog drift/tertukar, konsol PS5, TV 4K OLED, dan sofa gaming.
-4. **☕ Cafe & Coffee Roastery (`Nusantara Artisan Coffee`):** Menjadwalkan descaling mesin espresso, penggantian burr grinder, perawatan chiller, dan POS kasir.
-5. **🎉 Rental Alat Event & Audio (`StageCraft Audio`):** Inspeksi kabel, speaker aktif, mixer audio, dan genset sebelum dan sesudah disewakan.
+1. **Rental Kendaraan & Armada (`DriveNusa Fleet`):** Melacak servis berkala mobil/motor, odometer km, perlengkapan toolkit, dan riwayat klaim penyewa.
+2. **Rental Kamera & Studio Multimedia (`KameraPro Studio`):** Melacak lensa kamera bernilai puluhan juta, sensor cleaning, jamur (*fungus*), dan aksesoris audio.
+3. **Rental PS VIP & Gaming Lounge (`Nexus VIP Lounge`):** Mengamankan stik DualSense controller dari analog drift/tertukar, konsol PS5, TV 4K OLED, dan sofa gaming.
+4. **Cafe & Coffee Roastery (`Nusantara Artisan Coffee`):** Menjadwalkan descaling mesin espresso, penggantian burr grinder, perawatan chiller, dan POS kasir.
+5. **Rental Alat Event & Audio (`StageCraft Audio`):** Inspeksi kabel, speaker aktif, mixer audio, dan genset sebelum dan sesudah disewakan.
 
 ---
 
-## ✨ Fitur-Fitur Unggulan (Core Innovations)
+## Fitur-Fitur Unggulan (Core Innovations)
 
-- **📱 Smart Camera Scanner (Tanpa Alat Tambahan):** Memanfaatkan kamera HP staf via browser untuk audit stock opname kilat.
-- **🏷️ Label QR Digital Passport Generator:** Generator stiker QR dinamis yang siap cetak dalam berbagai ukuran (*Thermal / Grid Sticker A4*).
-- **🌐 Portal Publik Lapor Kerusakan (Zero Login):** Pelanggan atau staf dapat memindai label QR pada alat/meja untuk langsung mengirim tiket perbaikan fasilitas tanpa registrasi.
-- **📊 Mesin Depresiasi Akuntansi Otomatis:** Perhitungan nilai buku (*Net Book Value*) secara real-time menggunakan metode *Straight-Line* maupun *Declining Balance*.
-- **🛠️ Modul Work Order & Maintenance:** Manajemen tiket perbaikan teknisi internal maupun klaim garansi vendor rekanan.
-- **📋 Audit Log & Keamanan RLS:** Seluruh mutasi aset dan pembaruan data tercatat secara permanen dengan *Row Level Security* (PostgreSQL).
+- **Smart Camera Scanner (Tanpa Alat Tambahan):** Memanfaatkan kamera HP staf via browser untuk audit stock opname kilat.
+- **Label QR Digital Passport Generator:** Generator stiker QR dinamis yang siap cetak dalam berbagai ukuran (*Thermal / Grid Sticker A4*).
+- **Portal Publik Lapor Kerusakan (Zero Login):** Pelanggan atau staf dapat memindai label QR pada alat/meja untuk langsung mengirim tiket perbaikan fasilitas tanpa registrasi.
+- **Mesin Depresiasi Akuntansi Otomatis:** Perhitungan nilai buku (*Net Book Value*) secara real-time menggunakan metode *Straight-Line* maupun *Declining Balance*.
+- **Modul Work Order & Maintenance:** Manajemen tiket perbaikan teknisi internal maupun klaim garansi vendor rekanan.
+- **Audit Log & Keamanan RLS:** Seluruh mutasi aset dan pembaruan data tercatat secara permanen dengan *Row Level Security* (PostgreSQL).
 
 ---
 
-## 🛠️ Tech Stack & Arsitektur
+## Tech Stack & Arsitektur
 
 | Komponen | Teknologi | Keterangan |
 |---|---|---|
@@ -52,7 +52,7 @@ TECHSAS dirancang secara universal untuk berbagai industri UMKM berbasis aset:
 
 ---
 
-## 🚀 Panduan Menjalankan Aplikasi Secara Lokal
+## Panduan Menjalankan Aplikasi Secara Lokal
 
 ### Prasyarat:
 - **Node.js** versi 18.x atau lebih baru
@@ -85,7 +85,7 @@ Buka browser dan akses **`http://localhost:3000`**.
 
 ---
 
-## 👤 Akun Pengujian Demo (1-Click Login)
+## Akun Pengujian Demo (1-Click Login)
 
 Pada halaman login (`/login`), telah disediakan 5 profil peran siap pakai:
 - **Super Admin:** `admin@techsas.id` (Akses Penuh Semua Divisi)
@@ -97,5 +97,5 @@ Pada halaman login (`/login`), telah disediakan 5 profil peran siap pakai:
 
 ---
 
-## 📄 Lisensi & Hak Cipta
+## Lisensi & Hak Cipta
 Dikembangkan untuk **IT Days 2026 Universitas Sanata Dharma**. Seluruh hak cipta dilindungi undang-undang.
