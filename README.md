@@ -1,6 +1,6 @@
 # TECHSAS Universal Smart Asset Lifecycle & Tracking Platform
 
-> **Karya Kompetisi Web Development — IT DAYS 2026**  
+> **Karya Kompetisi Web Development IT DAYS 2026**  
 > **Tema Utama:** *Mens et Corpus* (Pikiran & Tubuh)  
 > **Subtema:** *B. Pemberdayaan Ekonomi & UMKM*  
 > **Penyelenggara:** Himpunan Mahasiswa Informatika (HMIF) Universitas Sanata Dharma Yogyakarta  
