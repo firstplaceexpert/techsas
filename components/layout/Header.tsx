@@ -214,7 +214,7 @@ export default function Header({
 
   return (
     <>
-      <header className="h-11 sm:h-12 bg-white/85 backdrop-blur-xl border border-cloud-200/90 rounded-full shadow-[0_4px_20px_-4px_rgba(0,0,0,0.07),0_1px_4px_rgba(0,0,0,0.03)] inline-flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 transition-all duration-200 w-fit">
+      <header className="h-11 sm:h-12 md:h-13 lg:h-14 bg-white/90 backdrop-blur-xl border border-cloud-200/90 rounded-full shadow-[0_4px_24px_-4px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.03)] inline-flex items-center gap-1.5 sm:gap-2 md:gap-3 lg:gap-3.5 px-2 sm:px-3 md:px-4 lg:px-5 transition-all duration-200 w-fit">
         {/* Apple-style 2-Line Burger Menu Button (Layar Kecil / HP Saja) */}
         <button
           type="button"
@@ -240,21 +240,21 @@ export default function Header({
 
         <div className="md:hidden w-px h-4 bg-cloud-200/80 shrink-0" />
 
-        {/* Compact Global Search */}
+        {/* Global Search - Expands generously on laptop and desktop */}
         <form
           onSubmit={handleSearchSubmit}
-          className="relative flex items-center w-36 sm:w-48 md:w-56 transition-all"
+          className="relative flex items-center w-36 sm:w-48 md:w-80 lg:w-[480px] xl:w-[580px] transition-all"
         >
-          <Search className="absolute left-2.5 w-3.5 h-3.5 text-slate-400 pointer-events-none shrink-0" />
+          <Search className="absolute left-2.5 sm:left-3 md:left-3.5 w-3.5 h-3.5 md:w-4 md:h-4 text-slate-400 pointer-events-none shrink-0" />
           <input
             ref={searchInputRef}
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Cari aset..."
-            className="w-full pl-8 pr-9 sm:pr-11 py-1 text-xs bg-cloud-100/70 hover:bg-cloud-100 focus:bg-white text-charcoal placeholder:text-slate-400 rounded-full border border-cloud-200/80 focus:border-slate-400 focus:outline-none focus:ring-1 focus:ring-mint-500/50 transition-all"
+            placeholder="Cari aset, nomor seri, lokasi, status..."
+            className="w-full pl-8 sm:pl-9 md:pl-10 pr-9 sm:pr-12 md:pr-14 py-1 md:py-2 text-xs md:text-sm bg-cloud-100/70 hover:bg-cloud-100 focus:bg-white text-charcoal placeholder:text-slate-400 rounded-full border border-cloud-200/80 focus:border-slate-400 focus:outline-none focus:ring-1 focus:ring-mint-500/50 transition-all"
           />
-          <div className="absolute right-2 flex items-center">
+          <div className="absolute right-2 sm:right-2.5 md:right-3 flex items-center">
             {searchQuery ? (
               <button
                 type="button"
@@ -262,24 +262,24 @@ export default function Header({
                 className="p-0.5 rounded-full hover:bg-cloud-200 text-slate-400 hover:text-charcoal transition-colors"
                 title="Hapus pencarian"
               >
-                <X className="w-3 h-3" />
+                <X className="w-3 h-3 md:w-3.5 md:h-3.5" />
               </button>
             ) : (
-              <kbd className="hidden sm:inline-flex items-center text-[9px] font-mono font-medium text-slate-400 bg-white px-1 py-0.5 rounded border border-cloud-200 shadow-2xs pointer-events-none">
+              <kbd className="hidden sm:inline-flex items-center text-[9px] md:text-[10px] font-mono font-medium text-slate-400 bg-white px-1 sm:px-1.5 py-0.5 rounded border border-cloud-200 shadow-2xs pointer-events-none">
                 ⌘K
               </kbd>
             )}
           </div>
         </form>
 
-        <div className="w-px h-4 bg-cloud-200/80 shrink-0" />
+        <div className="w-px h-4 md:h-5 bg-cloud-200/80 shrink-0" />
 
         {/* Notifications */}
         <div className="relative shrink-0" ref={dropdownRef}>
           <button
             onClick={() => setIsOpen(!isOpen)}
             className={clsx(
-              'w-8 h-8 rounded-full flex items-center justify-center transition-colors relative',
+              'w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center transition-colors relative',
               isOpen
                 ? 'bg-cloud-200/80 text-charcoal'
                 : 'text-slate-600 hover:bg-cloud-100 hover:text-charcoal'
@@ -288,9 +288,9 @@ export default function Header({
             id="header-notifications-btn"
             aria-expanded={isOpen}
           >
-            <Bell className="w-3.5 h-3.5" />
+            <Bell className="w-3.5 h-3.5 md:w-4 md:h-4" />
             {unreadCount > 0 && (
-              <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-mint-500 ring-2 ring-white" />
+              <span className="absolute top-1 right-1 w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-mint-500 ring-2 ring-white" />
             )}
           </button>
 
@@ -319,17 +319,17 @@ export default function Header({
           document.body
         )}
 
-        <div className="w-px h-4 bg-cloud-200/80 shrink-0" />
+        <div className="w-px h-4 md:h-5 bg-cloud-200/80 shrink-0" />
 
         {/* Logout Tool */}
         <button
           onClick={handleLogout}
           id="header-logout-btn"
           title="Keluar dari sistem"
-          className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-slate-600 hover:text-danger-600 hover:bg-danger-50 border border-transparent hover:border-danger-200/70 text-xs font-semibold transition-all group active:scale-95 shrink-0"
+          className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 md:px-3.5 py-1 md:py-1.5 rounded-full text-slate-600 hover:text-danger-600 hover:bg-danger-50 border border-transparent hover:border-danger-200/70 text-xs md:text-sm font-semibold transition-all group active:scale-95 shrink-0"
         >
-          <LogOut className="w-3.5 h-3.5 text-slate-500 group-hover:text-danger-600 transition-colors" />
-          <span className="hidden sm:inline text-xs">Keluar</span>
+          <LogOut className="w-3.5 h-3.5 md:w-4 md:h-4 text-slate-500 group-hover:text-danger-600 transition-colors" />
+          <span className="hidden sm:inline text-xs md:text-sm">Keluar</span>
         </button>
       </header>
 
