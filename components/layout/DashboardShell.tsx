@@ -32,15 +32,22 @@ export default function DashboardShell({ profile, children }: DashboardShellProp
       </div>
 
       {/* Main Content Area (removes sidebar indent in print) */}
-      <div className="flex flex-col flex-1 min-w-0 w-full lg:pl-[76px] print:!pl-0 print:!ml-0 print:!block print:!w-full transition-all duration-300">
-        <div className="print:hidden">
-          <Header
-            profile={profile}
-            onOpenMobileMenu={() => setMobileMenuOpen(true)}
-          />
-        </div>
-        <main className="flex-1 overflow-x-hidden overflow-y-auto p-3.5 sm:p-5 md:p-6 print:!p-0 print:!m-0 print:!overflow-visible print:!block print:!w-full max-w-full">
-          {children}
+      <div className="flex flex-col flex-1 min-w-0 w-full md:pl-[76px] print:!pl-0 print:!ml-0 print:!block print:!w-full transition-all duration-300 h-screen overflow-hidden">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto px-3.5 sm:px-5 md:px-6 pb-8 print:!p-0 print:!m-0 print:!overflow-visible print:!block print:!w-full max-w-full scroll-smooth">
+          {/* Floating Header (Compact & centered) */}
+          <div className="print:hidden sticky top-3 sm:top-4 z-[110] pt-1 pb-2 pointer-events-none flex justify-center">
+            <div className="pointer-events-auto">
+              <Header
+                profile={profile}
+                onOpenMobileMenu={() => setMobileMenuOpen(true)}
+              />
+            </div>
+          </div>
+
+          {/* Page Content */}
+          <div className="mt-1">
+            {children}
+          </div>
         </main>
       </div>
     </div>

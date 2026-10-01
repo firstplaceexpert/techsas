@@ -172,60 +172,126 @@ export default function AuditLogClient({ initialData }: Props) {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="card p-4 space-y-3 sm:space-y-0 sm:flex sm:items-center sm:justify-between gap-4">
-        <form onSubmit={handleSearchSubmit} className="flex-1 max-w-md relative">
-          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-          <input
-            type="text"
-            placeholder="Cari user, deskripsi, ID catatan..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="input pl-9 text-sm w-full"
-          />
+      <div className="card p-4 sm:p-5 space-y-3.5">
+        {/* Row 1: Full-width Search Tool (Dari kiri ke kanan) */}
+        <form onSubmit={handleSearchSubmit} className="w-full">
+          <div className="relative flex items-center w-full">
+            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+            <input
+              type="text"
+              placeholder="Cari aktivitas berdasarkan nama pengguna, deskripsi, modul, atau ID catatan..."
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value)
+                if (e.target.value === '') {
+                  refreshLogs({ search: '', page: 1 })
+                }
+              }}
+              className="input pl-10 pr-28 text-sm w-full h-11 bg-surface-50 focus:bg-white rounded-xl border border-cloud-200 focus:border-mint-500 transition-all shadow-xs"
+            />
+            <div className="absolute right-2.5 flex items-center gap-1.5">
+              {search && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSearch('')
+                    refreshLogs({ search: '', page: 1 })
+                  }}
+                  className="p-1 rounded-lg text-slate-400 hover:text-charcoal hover:bg-cloud-100 transition-colors"
+                  title="Hapus pencarian"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+              <button
+                type="submit"
+                disabled={isPending}
+                className="btn btn-primary btn-sm rounded-lg px-3.5 py-1.5 h-8 text-xs font-semibold shadow-xs disabled:opacity-50"
+              >
+                {isPending ? 'Mencari...' : 'Cari'}
+              </button>
+            </div>
+          </div>
         </form>
 
-        <div className="flex flex-wrap items-center gap-2">
-          {/* Action Filter */}
-          <select
-            value={actionFilter}
-            onChange={(e) => handleActionChange(e.target.value)}
-            className="input text-sm py-2 px-3"
-          >
-            <option value="all">Semua Aksi</option>
-            <option value="create">Create (Tambah)</option>
-            <option value="update">Update (Ubah)</option>
-            <option value="delete">Delete (Hapus)</option>
-            <option value="approve">Approve (Setuju)</option>
-            <option value="reject">Reject (Tolak)</option>
-            <option value="login">Login</option>
-            <option value="export">Export</option>
-          </select>
+        {/* Row 2: Filters Neatly Arranged in a Horizontal Row (Di bawahnya berjejer rapi) */}
+        <div className="pt-2 flex flex-col md:flex-row md:items-center justify-between gap-3 border-t border-cloud-100">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-500 mr-0.5">
+              <Filter className="w-3.5 h-3.5 text-slate-400" />
+              <span>Filter:</span>
+            </div>
 
-          {/* Table Filter */}
-          <select
-            value={tableFilter}
-            onChange={(e) => handleTableChange(e.target.value)}
-            className="input text-sm py-2 px-3"
-          >
-            <option value="all">Semua Modul</option>
-            <option value="assets">Aset</option>
-            <option value="work_orders">Work Order</option>
-            <option value="asset_maintenance">Maintenance</option>
-            <option value="vendors">Vendor</option>
-            <option value="disposal_requests">Disposal</option>
-            <option value="stock_opname_schedules">Stock Opname</option>
-            <option value="profiles">User / Akun</option>
-          </select>
+            {/* Action Filter */}
+            <div className="relative min-w-[150px] sm:min-w-[170px]">
+              <select
+                value={actionFilter}
+                onChange={(e) => handleActionChange(e.target.value)}
+                className="input text-xs sm:text-sm py-2 px-3 pr-8 w-full bg-white border-cloud-200 rounded-xl cursor-pointer hover:border-slate-300 focus:ring-mint-500"
+              >
+                <option value="all">Semua Aksi</option>
+                <option value="create">Create (Tambah)</option>
+                <option value="update">Update (Ubah)</option>
+                <option value="delete">Delete (Hapus)</option>
+                <option value="approve">Approve (Setuju)</option>
+                <option value="reject">Reject (Tolak)</option>
+                <option value="login">Login</option>
+                <option value="export">Export</option>
+              </select>
+            </div>
 
-          {/* Export Button */}
-          <button
-            onClick={handleExportCsv}
-            className="btn btn-secondary text-sm flex items-center gap-1.5"
-            title="Download CSV"
-          >
-            <Download className="w-4 h-4" />
-            <span className="hidden md:inline">Export CSV</span>
-          </button>
+            {/* Table / Module Filter */}
+            <div className="relative min-w-[150px] sm:min-w-[170px]">
+              <select
+                value={tableFilter}
+                onChange={(e) => handleTableChange(e.target.value)}
+                className="input text-xs sm:text-sm py-2 px-3 pr-8 w-full bg-white border-cloud-200 rounded-xl cursor-pointer hover:border-slate-300 focus:ring-mint-500"
+              >
+                <option value="all">Semua Modul</option>
+                <option value="assets">Aset</option>
+                <option value="work_orders">Work Order</option>
+                <option value="asset_maintenance">Maintenance</option>
+                <option value="vendors">Vendor</option>
+                <option value="disposal_requests">Disposal</option>
+                <option value="stock_opname_schedules">Stock Opname</option>
+                <option value="profiles">User / Akun</option>
+              </select>
+            </div>
+
+            {/* Reset Filter Button (Shown when any filter or search is active) */}
+            {(actionFilter !== 'all' || tableFilter !== 'all' || search !== '') && (
+              <button
+                type="button"
+                onClick={() => {
+                  setSearch('')
+                  setActionFilter('all')
+                  setTableFilter('all')
+                  refreshLogs({ search: '', action: 'all', tableName: 'all', page: 1 })
+                }}
+                className="btn btn-ghost btn-sm text-xs text-rose-600 hover:text-rose-700 hover:bg-rose-50 px-2.5 py-1.5 rounded-lg flex items-center gap-1 font-medium transition-colors"
+                title="Reset semua filter"
+              >
+                <X className="w-3.5 h-3.5" />
+                <span>Reset Filter</span>
+              </button>
+            )}
+          </div>
+
+          {/* Right Side: Log count & Export CSV Button */}
+          <div className="flex items-center justify-between md:justify-end gap-3 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-cloud-100">
+            <span className="text-xs text-slate-400 font-medium hidden sm:inline">
+              Total <span className="font-bold text-charcoal">{totalCount}</span> log
+            </span>
+
+            <button
+              onClick={handleExportCsv}
+              className="btn btn-secondary btn-sm text-xs sm:text-sm flex items-center gap-1.5 rounded-xl hover:border-slate-300 shadow-2xs"
+              title="Download CSV"
+            >
+              <Download className="w-4 h-4 text-slate-500" />
+              <span>Export CSV</span>
+            </button>
+          </div>
         </div>
       </div>
 

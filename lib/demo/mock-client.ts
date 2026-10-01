@@ -453,7 +453,7 @@ class MockQueryBuilder {
     if (this.operation === 'insert') {
       const itemsToInsert = Array.isArray(this.payload) ? this.payload : [this.payload]
       const created = itemsToInsert.map((item, idx) => {
-        let finalItem = { ...item }
+        const finalItem = { ...item }
         if (this.table === 'assets' && (!finalItem.asset_code || finalItem.asset_code.startsWith('AMB-'))) {
           const bu = businessUnitsState.find((b) => b.id === finalItem.business_unit_id)
           const cat = categoriesState.find((c) => c.id === finalItem.category_id)

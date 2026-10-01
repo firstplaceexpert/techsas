@@ -160,7 +160,7 @@ export default function Sidebar({ profile, isOpen = false, onClose }: SidebarPro
       {isOpen && (
         <div
           onClick={onClose}
-          className="fixed inset-0 bg-charcoal/40 backdrop-blur-xs z-40 lg:hidden transition-opacity duration-300"
+          className="fixed inset-0 bg-charcoal/40 backdrop-blur-xs z-40 md:hidden transition-opacity duration-300"
           aria-hidden="true"
         />
       )}
@@ -175,10 +175,10 @@ export default function Sidebar({ profile, isOpen = false, onClose }: SidebarPro
           'group/sidebar fixed top-0 left-0 h-full z-50 flex flex-col',
           'transition-all duration-300 ease-in-out',
           'bg-white border-r border-cloud-200 shadow-apple',
-          // Desktop: compact 76px, expands to 270px on hover
-          'w-[270px] lg:w-[76px] lg:hover:w-[270px] lg:hover:shadow-2xl',
-          // Mobile: drawer slide in/out
-          isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+          // Tablet & Laptop: compact 76px, expands to 270px on hover
+          'w-[270px] md:w-[76px] md:hover:w-[270px] md:hover:shadow-2xl',
+          // Mobile HP: drawer slide in/out
+          isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         )}
       >
         {/* Brand Header */}
@@ -194,7 +194,7 @@ export default function Sidebar({ profile, isOpen = false, onClose }: SidebarPro
             </div>
 
             {/* Brand Title: Expands on hover */}
-            <div className="flex flex-col whitespace-nowrap overflow-hidden transition-all duration-300 opacity-100 lg:opacity-0 lg:group-hover/sidebar:opacity-100 lg:w-0 lg:group-hover/sidebar:w-auto">
+            <div className="flex flex-col whitespace-nowrap overflow-hidden transition-all duration-300 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 md:w-0 md:group-hover/sidebar:w-auto">
               <span className="font-sans font-black tracking-[0.16em] text-lg text-charcoal leading-none">
                 TECHSAS
               </span>
@@ -204,11 +204,11 @@ export default function Sidebar({ profile, isOpen = false, onClose }: SidebarPro
             </div>
           </Link>
 
-          {/* Close button on mobile only */}
+          {/* Close button on mobile HP only */}
           <button
             type="button"
             onClick={onClose}
-            className="lg:hidden p-1.5 -mr-1 rounded-lg text-slate-400 hover:text-charcoal hover:bg-cloud-100 active:bg-cloud-200 transition-colors"
+            className="md:hidden p-1.5 -mr-1 rounded-lg text-slate-400 hover:text-charcoal hover:bg-cloud-100 active:bg-cloud-200 transition-colors"
             title="Tutup Menu"
           >
             <X className="w-5 h-5" />
@@ -223,9 +223,9 @@ export default function Sidebar({ profile, isOpen = false, onClose }: SidebarPro
               {group.groupLabel && (
                 <div className="py-1">
                   {/* Subtle divider in collapsed mode */}
-                  <div className="h-px bg-cloud-200/60 mx-1 block lg:group-hover/sidebar:hidden" />
+                  <div className="h-px bg-cloud-200/60 mx-1 block md:group-hover/sidebar:hidden" />
                   {/* Section Title when hovered / on mobile */}
-                  <p className="text-[10px] font-bold text-slate-400 tracking-wider px-2 uppercase whitespace-nowrap overflow-hidden block lg:hidden lg:group-hover/sidebar:block transition-all duration-200">
+                  <p className="text-[10px] font-bold text-slate-400 tracking-wider px-2 uppercase whitespace-nowrap overflow-hidden block md:hidden md:group-hover/sidebar:block transition-all duration-200">
                     {group.groupLabel}
                   </p>
                 </div>
@@ -259,7 +259,7 @@ export default function Sidebar({ profile, isOpen = false, onClose }: SidebarPro
                         </span>
 
                         {/* Section Title / Label: Revealed on hover */}
-                        <span className="whitespace-nowrap overflow-hidden text-ellipsis transition-opacity duration-200 block lg:hidden lg:group-hover/sidebar:block">
+                        <span className="whitespace-nowrap overflow-hidden text-ellipsis transition-opacity duration-200 block md:hidden md:group-hover/sidebar:block">
                           {item.label}
                         </span>
 
@@ -292,7 +292,7 @@ export default function Sidebar({ profile, isOpen = false, onClose }: SidebarPro
             </div>
 
             {/* User Info: Revealed on hover */}
-            <div className="min-w-0 flex-1 whitespace-nowrap overflow-hidden transition-all duration-300 block lg:hidden lg:group-hover/sidebar:block">
+            <div className="min-w-0 flex-1 whitespace-nowrap overflow-hidden transition-all duration-300 block md:hidden md:group-hover/sidebar:block">
               <p className="text-charcoal text-xs font-bold truncate leading-tight">
                 {profile.full_name || 'User'}
               </p>
