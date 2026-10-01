@@ -225,11 +225,11 @@ export default function VendorListClient({ initialData, canManage }: Props) {
           />
         </form>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           <select
             value={categoryFilter}
             onChange={(e) => handleCategoryChange(e.target.value)}
-            className="input text-sm py-2 px-3"
+            className="h-10 px-4 min-w-[200px] text-xs font-semibold rounded-xl border border-slate-200 bg-white text-slate-700 shadow-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20 cursor-pointer"
           >
             <option value="all">Semua Kategori</option>
             <option value="service">Service & Maintenance</option>
@@ -241,7 +241,7 @@ export default function VendorListClient({ initialData, canManage }: Props) {
           {canManage && (
             <button
               onClick={handleOpenCreate}
-              className="btn btn-primary text-sm flex items-center gap-1.5 shadow-xs"
+              className="h-10 px-4 min-w-[200px] text-xs font-semibold rounded-xl bg-pale-100 hover:bg-pale-200 text-charcoal flex items-center justify-center gap-2 shadow-xs transition-all"
             >
               <Plus className="w-4 h-4" />
               <span>Tambah Vendor</span>

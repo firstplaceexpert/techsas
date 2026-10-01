@@ -276,11 +276,11 @@ export default function DepreciationClient({
           </p>
         </div>
 
-        <div className="flex items-center gap-2 flex-wrap">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           <button
             onClick={handleDownloadAccountingExcel}
             disabled={exportingExcel}
-            className="text-xs flex items-center gap-2 py-2 px-3.5 shadow-sm bg-emerald-700 hover:bg-emerald-800 text-white font-semibold rounded-lg transition-all"
+            className="h-10 px-4 min-w-[210px] text-xs flex items-center justify-center gap-2 shadow-xs bg-emerald-700 hover:bg-emerald-800 text-white font-semibold rounded-xl transition-all"
             title="Unduh Buku Kerja Excel (.xlsx) Lengkap 4-Sheet untuk Tim Akuntansi & Auditor"
           >
             {exportingExcel ? (
@@ -292,18 +292,16 @@ export default function DepreciationClient({
               <>
                 <FileSpreadsheet className="w-4 h-4 text-emerald-200" />
                 <span>Unduh Rekap Akuntansi (.xlsx)</span>
-                <span className="bg-emerald-800 text-[10px] px-1.5 py-0.2 rounded text-emerald-100 font-mono">
-                  4-Sheet
-                </span>
               </>
             )}
           </button>
 
           <button
             onClick={() => window.print()}
-            className="btn-secondary text-xs flex items-center gap-1.5 py-2"
+            className="h-10 px-4 min-w-[210px] btn-secondary text-xs flex items-center justify-center gap-2 rounded-xl border border-slate-200 shadow-xs hover:bg-slate-50 transition-all font-semibold"
           >
-            <Printer className="w-4 h-4 text-slate-500" /> Cetak Bukti Memorial
+            <Printer className="w-4 h-4 text-slate-500" />
+            <span>Cetak Bukti Memorial</span>
           </button>
         </div>
       </div>
@@ -362,44 +360,52 @@ export default function DepreciationClient({
         </div>
       </div>
 
-      {/* Accounting Period & Unit Filter Bar */}
-      <div className="card p-4 bg-slate-900 text-white shadow-md">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-brand-500/20 border border-brand-500/40 flex items-center justify-center text-brand-400">
-              <Calendar className="w-5 h-5" />
+      {/* Accounting Period & Unit Filter Bar - Signature Brand Black-to-Silver Gradient */}
+      <div className="card py-6 px-7 bg-gradient-to-r from-[#0a0c10] via-[#222834] to-[#64748b] text-white shadow-xl border border-slate-600/60 rounded-2xl relative overflow-hidden">
+        {/* Soft specular sheen overlay mirroring the brand logo curves */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none" />
+
+        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-black/50 border border-white/25 flex items-center justify-center text-[#AEEB7B] shadow-inner backdrop-blur-md shrink-0">
+              <Calendar className="w-6 h-6 text-[#AEEB7B]" />
             </div>
             <div>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-300">
-                Filter Periode Tutup Buku & Unit Bisnis
-              </h3>
-              <p className="text-xs text-slate-400">
-                Pilih periode untuk mengenerate otomatis jurnal memorial dan mutasi aset.
+              <div className="flex items-center gap-2.5">
+                <h3 className="text-sm font-black uppercase tracking-wider text-white">
+                  Filter Periode Tutup Buku & Unit Bisnis
+                </h3>
+                <span className="text-[11px] px-2 py-0.5 rounded-md bg-[#AEEB7B]/20 text-[#AEEB7B] border border-[#AEEB7B]/40 font-mono font-extrabold tracking-wide">
+                  REAL-TIME
+                </span>
+              </div>
+              <p className="text-xs text-slate-200 mt-1 leading-relaxed">
+                Pilih periode pembukuan untuk mengkalkulasi otomatis seluruh voucher memorial jurnal dan mutasi aset UMKM.
               </p>
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="flex items-center gap-2 bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-xl">
-              <span className="text-[11px] text-slate-400 font-medium">Bulan:</span>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <div className="flex items-center gap-2.5 bg-black/45 hover:bg-black/60 border border-white/25 hover:border-white/40 h-11 px-4 rounded-xl backdrop-blur-md transition-all shadow-inner">
+              <span className="text-xs text-slate-300 font-bold uppercase tracking-wider">Periode:</span>
               <input
                 type="month"
                 value={selectedMonth}
                 onChange={(e) => handleFilterUpdate(e.target.value, selectedUnit)}
-                className="bg-transparent text-white text-xs font-semibold focus:outline-none cursor-pointer"
+                className="bg-transparent text-white text-xs font-bold focus:outline-none cursor-pointer"
               />
             </div>
 
-            <div className="flex items-center gap-2 bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-xl">
-              <Building2 className="w-3.5 h-3.5 text-brand-400" />
+            <div className="flex items-center gap-2.5 bg-black/45 hover:bg-black/60 border border-white/25 hover:border-white/40 h-11 px-4 rounded-xl backdrop-blur-md transition-all shadow-inner">
+              <Building2 className="w-4 h-4 text-[#AEEB7B] shrink-0" />
               <select
                 value={selectedUnit}
                 onChange={(e) => handleFilterUpdate(selectedMonth, e.target.value)}
-                className="bg-transparent text-white text-xs font-semibold focus:outline-none cursor-pointer"
+                className="bg-transparent text-white text-xs font-bold focus:outline-none cursor-pointer"
               >
-                <option value="" className="bg-slate-800 text-white">Semua Unit Bisnis (Konsolidasi)</option>
+                <option value="" className="bg-slate-900 text-white font-medium">Semua Unit Bisnis (Konsolidasi)</option>
                 {businessUnits.map((u) => (
-                  <option key={u.id} value={u.id} className="bg-slate-800 text-white">
+                  <option key={u.id} value={u.id} className="bg-slate-900 text-white font-medium">
                     {u.name}
                   </option>
                 ))}
@@ -480,7 +486,7 @@ export default function DepreciationClient({
                 )}
               </div>
               <p className="text-xs text-slate-500 mt-0.5">
-                Tanggal Pembukuan: <b>{journalData.date}</b> &bull; Periode Akuntansi: <b>{journalData.periodMonth}</b> &bull; Total Transaksi: <b>{journalData.lines.length} Baris Jurnal</b>
+                Tanggal Pembukuan: <b>{journalData.date}</b> &bull; Periode Akuntansi: <b>{journalData.periodMonth}</b>
               </p>
             </div>
 
@@ -530,22 +536,44 @@ export default function DepreciationClient({
           </div>
 
           {/* Table of Double-Entry Journal Lines */}
-          <div className="card overflow-hidden bg-white border border-slate-200">
+          <div className="card overflow-hidden bg-white border border-slate-200 shadow-xs rounded-xl">
+            <div className="p-3.5 bg-slate-50 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <BookOpen className="w-4 h-4 text-slate-500" />
+                <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                  Daftar Baris Jurnal Umum (Format Tradisional Debit & Kredit Selang-Seling)
+                </span>
+                <span className="text-[11px] bg-slate-200/80 text-slate-700 px-2 py-0.5 rounded-full font-semibold">
+                  {journalData.lines.length} Baris Jurnal
+                </span>
+              </div>
+              <div className="text-[11px] text-slate-500 flex items-center gap-4">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
+                  Baris Atas: <b>Debit (Beban)</b>
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-slate-400 inline-block" />
+                  Baris Bawah: <b>Kredit (Akumulasi / Menjorok ke Dalam)</b>
+                </span>
+              </div>
+            </div>
+
             <div className="overflow-x-auto">
               <table className="w-full text-xs text-left">
-                <thead className="bg-slate-50 text-slate-600 border-b border-slate-200 font-semibold uppercase tracking-wider text-[11px]">
+                <thead className="bg-slate-100/80 text-slate-600 border-b border-slate-200 font-semibold uppercase tracking-wider text-[11px]">
                   <tr>
-                    <th className="py-3 px-4">No. Bukti</th>
-                    <th className="py-3 px-4">Tanggal</th>
-                    <th className="py-3 px-4">Kode Akun (CoA)</th>
-                    <th className="py-3 px-4">Nama Akun Akuntansi</th>
-                    <th className="py-3 px-4">Cost Center / Unit</th>
-                    <th className="py-3 px-4 text-right">Debit (Rp)</th>
-                    <th className="py-3 px-4 text-right">Kredit (Rp)</th>
-                    <th className="py-3 px-4">Keterangan / Memo</th>
+                    <th className="py-3 px-4 whitespace-nowrap">No. Bukti</th>
+                    <th className="py-3 px-4 whitespace-nowrap">Tanggal</th>
+                    <th className="py-3 px-4 whitespace-nowrap text-center">Kode Akun (CoA)</th>
+                    <th className="py-3 px-4 min-w-[280px]">Nama Akun Akuntansi</th>
+                    <th className="py-3 px-4 whitespace-nowrap">Cost Center / Unit</th>
+                    <th className="py-3 px-4 text-right whitespace-nowrap min-w-[120px]">Debit (Rp)</th>
+                    <th className="py-3 px-4 text-right whitespace-nowrap min-w-[120px]">Kredit (Rp)</th>
+                    <th className="py-3 px-4 min-w-[200px]">Keterangan Transaksi</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 text-slate-700">
+                <tbody className="text-slate-700">
                   {journalData.lines.length === 0 ? (
                     <tr>
                       <td colSpan={8} className="py-12 text-center text-slate-400">
@@ -555,58 +583,112 @@ export default function DepreciationClient({
                       </td>
                     </tr>
                   ) : (
-                    journalData.lines.map((l) => (
-                      <tr key={l.id} className="hover:bg-slate-50/80 transition-colors">
-                        <td className="py-2.5 px-4 font-mono font-medium text-slate-600">{l.voucherNo}</td>
-                        <td className="py-2.5 px-4 font-medium text-slate-700 whitespace-nowrap">{l.date}</td>
-                        <td className="py-2.5 px-4 font-mono font-bold text-slate-900">
-                          <span className="px-1.5 py-0.5 rounded bg-slate-100 border border-slate-200">
-                            {l.accountCode}
-                          </span>
-                        </td>
-                        <td className="py-2.5 px-4">
-                          <span className={`font-semibold ${l.credit > 0 ? 'pl-4 text-slate-700 block' : 'text-slate-900'}`}>
-                            {l.credit > 0 ? `↳ ${l.accountName}` : l.accountName}
-                          </span>
-                        </td>
-                        <td className="py-2.5 px-4">
-                          <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-full">
-                            <Building2 className="w-3 h-3 text-slate-400" /> {l.costCenter}
-                          </span>
-                        </td>
-                        <td className="py-2.5 px-4 text-right font-mono font-bold text-slate-900">
-                          {l.debit > 0 ? formatRupiah(l.debit) : '-'}
-                        </td>
-                        <td className="py-2.5 px-4 text-right font-mono font-bold text-slate-900">
-                          {l.credit > 0 ? formatRupiah(l.credit) : '-'}
-                        </td>
-                        <td className="py-2.5 px-4 text-slate-500 max-w-xs truncate" title={l.memo}>
-                          {l.memo}
-                        </td>
-                      </tr>
-                    ))
+                    journalData.lines.map((l, index) => {
+                      const isCredit = l.credit > 0
+                      const isEvenVoucher = Math.floor(index / 2) % 2 === 0
+                      // Border separates transaction pairs
+                      const isLastOfPair = index % 2 === 1 || index === journalData.lines.length - 1
+
+                      return (
+                        <tr
+                          key={l.id}
+                          className={`${isEvenVoucher ? 'bg-white' : 'bg-slate-50/40'} ${
+                            isLastOfPair ? 'border-b-2 border-slate-200/80' : 'border-b border-slate-100'
+                          } hover:bg-emerald-50/30 transition-colors`}
+                        >
+                          {/* Voucher No */}
+                          <td className="py-2.5 px-4 font-mono font-medium text-slate-600 whitespace-nowrap">
+                            {l.voucherNo}
+                          </td>
+
+                          {/* Date */}
+                          <td className="py-2.5 px-4 font-medium text-slate-700 whitespace-nowrap">
+                            {l.date}
+                          </td>
+
+                          {/* CoA Code: PURE ONE LINE - NEVER WRAPS */}
+                          <td className="py-2.5 px-4 text-center whitespace-nowrap">
+                            <span
+                              className={`inline-block font-mono font-bold text-xs px-2.5 py-1 rounded-md whitespace-nowrap shadow-2xs ${
+                                isCredit
+                                  ? 'bg-slate-100 border border-slate-300 text-slate-700'
+                                  : 'bg-emerald-50 border border-emerald-200 text-emerald-800'
+                              }`}
+                            >
+                              {l.accountCode}
+                            </span>
+                          </td>
+
+                          {/* Account Name */}
+                          <td className="py-2.5 px-4">
+                            {isCredit ? (
+                              <div className="pl-6 flex items-center gap-1.5 text-slate-600 font-medium">
+                                <span className="text-slate-400 font-mono select-none">↳</span>
+                                <span className="font-semibold text-slate-700">{l.accountName}</span>
+                              </div>
+                            ) : (
+                              <div className="font-bold text-slate-900 flex items-center gap-1.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
+                                <span>{l.accountName}</span>
+                              </div>
+                            )}
+                          </td>
+
+                          {/* Cost Center */}
+                          <td className="py-2.5 px-4 whitespace-nowrap">
+                            <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-slate-700 bg-slate-100 px-2.5 py-0.5 rounded-full">
+                              <Building2 className="w-3 h-3 text-slate-400 shrink-0" />
+                              <span>{l.costCenter}</span>
+                            </span>
+                          </td>
+
+                          {/* Debit Amount */}
+                          <td className="py-2.5 px-4 text-right font-mono font-bold text-slate-900 whitespace-nowrap">
+                            {l.debit > 0 ? (
+                              <span className="text-emerald-700 font-black">{formatRupiah(l.debit)}</span>
+                            ) : (
+                              <span className="text-slate-300">-</span>
+                            )}
+                          </td>
+
+                          {/* Credit Amount */}
+                          <td className="py-2.5 px-4 text-right font-mono font-bold text-slate-900 whitespace-nowrap">
+                            {l.credit > 0 ? (
+                              <span className="text-slate-800 font-black">{formatRupiah(l.credit)}</span>
+                            ) : (
+                              <span className="text-slate-300">-</span>
+                            )}
+                          </td>
+
+                          {/* Memo */}
+                          <td className="py-2.5 px-4 text-slate-500 text-[11px] max-w-xs truncate" title={l.memo}>
+                            {l.memo}
+                          </td>
+                        </tr>
+                      )
+                    })
                   )}
                 </tbody>
                 {journalData.lines.length > 0 && (
                   <tfoot className="bg-slate-100/90 border-t-2 border-slate-300 font-bold text-slate-900 text-xs">
                     <tr>
-                      <td colSpan={5} className="py-3 px-4 text-right uppercase tracking-wider">
-                        Total Jurnal Memorial:
+                      <td colSpan={5} className="py-3.5 px-4 text-right uppercase tracking-wider text-slate-700">
+                        Total Jurnal Memorial ({journalData.lines.length} Baris):
                       </td>
-                      <td className="py-3 px-4 text-right font-mono text-emerald-700 text-sm font-black">
+                      <td className="py-3.5 px-4 text-right font-mono text-emerald-700 text-sm font-black whitespace-nowrap">
                         {formatRupiah(journalData.totalDebit)}
                       </td>
-                      <td className="py-3 px-4 text-right font-mono text-emerald-700 text-sm font-black">
+                      <td className="py-3.5 px-4 text-right font-mono text-emerald-700 text-sm font-black whitespace-nowrap">
                         {formatRupiah(journalData.totalCredit)}
                       </td>
-                      <td className="py-3 px-4">
+                      <td className="py-3.5 px-4">
                         {journalData.isBalanced ? (
-                          <span className="text-[11px] font-bold text-emerald-600 flex items-center gap-1">
-                            <Check className="w-4 h-4" /> BALANCED
+                          <span className="text-[11px] font-bold text-emerald-700 flex items-center gap-1 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200 w-fit">
+                            <Check className="w-3.5 h-3.5" /> BALANCED
                           </span>
                         ) : (
-                          <span className="text-[11px] font-bold text-rose-600 flex items-center gap-1">
-                            <AlertCircle className="w-4 h-4" /> SELISIH Rp {Math.abs(journalData.totalDebit - journalData.totalCredit).toLocaleString()}
+                          <span className="text-[11px] font-bold text-rose-600 flex items-center gap-1 bg-rose-50 px-2.5 py-1 rounded-lg border border-rose-200 w-fit">
+                            <AlertCircle className="w-3.5 h-3.5" /> SELISIH Rp {Math.abs(journalData.totalDebit - journalData.totalCredit).toLocaleString()}
                           </span>
                         )}
                       </td>

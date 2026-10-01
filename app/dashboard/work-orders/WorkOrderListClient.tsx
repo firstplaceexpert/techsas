@@ -165,94 +165,99 @@ export default function WorkOrderListClient({ initialData, vendors }: Props) {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="card p-4 space-y-3 lg:space-y-0 lg:flex lg:items-center lg:justify-between gap-4">
-        <form onSubmit={handleSearchSubmit} className="flex-1 max-w-md relative">
-          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+      <div className="card p-4 space-y-3 bg-white border border-slate-200 shadow-xs rounded-xl">
+        {/* Full-width Search Bar */}
+        <form onSubmit={handleSearchSubmit} className="w-full relative">
+          <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
-            placeholder="Cari No. WO, nama masalah, aset..."
+            placeholder="Cari No. WO, nama masalah, kode aset, pelaksana/vendor..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="input pl-9 text-sm w-full"
+            className="w-full h-11 pl-10 pr-4 text-xs sm:text-sm rounded-xl border border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all shadow-xs"
           />
         </form>
 
-        <div className="flex flex-wrap items-center gap-2">
-          {/* Status Filter */}
-          <select
-            value={statusFilter}
-            onChange={(e) => {
-              setStatusFilter(e.target.value)
-              refreshList({ status: e.target.value, page: 1 })
-            }}
-            className="input text-xs py-2 px-3"
-          >
-            <option value="all">Semua Status</option>
-            <option value="pending">Menunggu Persetujuan</option>
-            <option value="approved">Disetujui</option>
-            <option value="in_progress">Dalam Pengerjaan</option>
-            <option value="on_hold">Ditunda (On Hold)</option>
-            <option value="completed">Selesai</option>
-            <option value="cancelled">Dibatalkan</option>
-          </select>
+        {/* Filter Controls Bar (Underneath Search) */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pt-2 border-t border-slate-100">
+          <div className="flex flex-wrap items-center gap-2">
+            {/* Status Filter */}
+            <select
+              value={statusFilter}
+              onChange={(e) => {
+                setStatusFilter(e.target.value)
+                refreshList({ status: e.target.value, page: 1 })
+              }}
+              className="h-9 px-3 text-xs font-semibold rounded-lg border border-slate-200 bg-slate-50 hover:bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500/20 cursor-pointer shadow-xs transition-colors"
+            >
+              <option value="all">Semua Status</option>
+              <option value="pending">Menunggu Persetujuan</option>
+              <option value="approved">Disetujui</option>
+              <option value="in_progress">Dalam Pengerjaan</option>
+              <option value="on_hold">Ditunda (On Hold)</option>
+              <option value="completed">Selesai</option>
+              <option value="cancelled">Dibatalkan</option>
+            </select>
 
-          {/* Priority Filter */}
-          <select
-            value={priorityFilter}
-            onChange={(e) => {
-              setPriorityFilter(e.target.value)
-              refreshList({ priority: e.target.value, page: 1 })
-            }}
-            className="input text-xs py-2 px-3"
-          >
-            <option value="all">Semua Prioritas</option>
-            <option value="emergency">Emergency / Darurat</option>
-            <option value="high">Tinggi</option>
-            <option value="medium">Sedang</option>
-            <option value="low">Rendah</option>
-          </select>
+            {/* Priority Filter */}
+            <select
+              value={priorityFilter}
+              onChange={(e) => {
+                setPriorityFilter(e.target.value)
+                refreshList({ priority: e.target.value, page: 1 })
+              }}
+              className="h-9 px-3 text-xs font-semibold rounded-lg border border-slate-200 bg-slate-50 hover:bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500/20 cursor-pointer shadow-xs transition-colors"
+            >
+              <option value="all">Semua Prioritas</option>
+              <option value="emergency">Emergency / Darurat</option>
+              <option value="high">Tinggi</option>
+              <option value="medium">Sedang</option>
+              <option value="low">Rendah</option>
+            </select>
 
-          {/* Type Filter */}
-          <select
-            value={typeFilter}
-            onChange={(e) => {
-              setTypeFilter(e.target.value)
-              refreshList({ maintenanceType: e.target.value, page: 1 })
-            }}
-            className="input text-xs py-2 px-3"
-          >
-            <option value="all">Semua Tipe</option>
-            <option value="corrective">Korektif (Perbaikan)</option>
-            <option value="preventive">Preventif (Rutin)</option>
-            <option value="emergency">Emergency (Darurat)</option>
-            <option value="inspection">Inspeksi Fisik</option>
-          </select>
+            {/* Type Filter */}
+            <select
+              value={typeFilter}
+              onChange={(e) => {
+                setTypeFilter(e.target.value)
+                refreshList({ maintenanceType: e.target.value, page: 1 })
+              }}
+              className="h-9 px-3 text-xs font-semibold rounded-lg border border-slate-200 bg-slate-50 hover:bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500/20 cursor-pointer shadow-xs transition-colors"
+            >
+              <option value="all">Semua Tipe</option>
+              <option value="corrective">Korektif (Perbaikan)</option>
+              <option value="preventive">Preventif (Rutin)</option>
+              <option value="emergency">Emergency (Darurat)</option>
+              <option value="inspection">Inspeksi Fisik</option>
+            </select>
 
-          {/* Vendor Filter */}
-          <select
-            value={vendorFilter}
-            onChange={(e) => {
-              setVendorFilter(e.target.value)
-              refreshList({ vendorId: e.target.value, page: 1 })
-            }}
-            className="input text-xs py-2 px-3 max-w-[160px]"
-          >
-            <option value="all">Semua Rekanan</option>
-            {vendors.map((v) => (
-              <option key={v.id} value={v.id}>
-                {v.name}
-              </option>
-            ))}
-          </select>
+            {/* Vendor Filter */}
+            <select
+              value={vendorFilter}
+              onChange={(e) => {
+                setVendorFilter(e.target.value)
+                refreshList({ vendorId: e.target.value, page: 1 })
+              }}
+              className="h-9 px-3 text-xs font-semibold rounded-lg border border-slate-200 bg-slate-50 hover:bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500/20 cursor-pointer shadow-xs transition-colors"
+            >
+              <option value="all">Semua Rekanan</option>
+              {vendors.map((v) => (
+                <option key={v.id} value={v.id}>
+                  {v.name}
+                </option>
+              ))}
+            </select>
+          </div>
 
           {/* Create Button */}
-          <Link
-            href="/dashboard/work-orders/new"
-            className="btn btn-primary text-xs flex items-center gap-1.5 shadow-xs whitespace-nowrap"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Buat WO Baru</span>
-          </Link>
+          
+            <Link
+              href="/dashboard/work-orders/new"
+              className="h-9 px-4 rounded-lg bg-pale-100 hover:bg-pale-200 text-charcoal font-semibold text-xs flex items-center justify-center gap-1.5 transition-all shadow-xs shrink-0"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Buat WO Baru</span>
+            </Link>
         </div>
       </div>
 
