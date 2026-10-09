@@ -11,6 +11,14 @@ export async function updateSession(request: NextRequest) {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.placeholder'
 
+  const isPlaceholder = !supabaseUrl || supabaseUrl.includes('placeholder')
+  const demoSession = request.cookies.get('techsas_demo_session')?.value
+
+  // In demo or placeholder mode, bypass external network auth calls
+  if (isPlaceholder || demoSession) {
+    return { supabaseResponse, user: null }
+  }
+
   const supabase = createServerClient<Database>(
     supabaseUrl,
     supabaseAnonKey,

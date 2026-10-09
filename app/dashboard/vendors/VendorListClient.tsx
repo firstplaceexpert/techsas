@@ -221,7 +221,7 @@ export default function VendorListClient({ initialData, canManage }: Props) {
             placeholder="Cari vendor, PIC, no. telepon, email..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="input pl-9 text-sm w-full"
+            className="w-full h-11 pl-9 pr-3.5 text-xs sm:text-sm rounded-xl border border-cloud-200 bg-white text-charcoal placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-mint-500 shadow-2xs transition-all"
           />
         </form>
 
@@ -229,7 +229,7 @@ export default function VendorListClient({ initialData, canManage }: Props) {
           <select
             value={categoryFilter}
             onChange={(e) => handleCategoryChange(e.target.value)}
-            className="h-10 px-4 min-w-[200px] text-xs font-semibold rounded-xl border border-slate-200 bg-white text-slate-700 shadow-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20 cursor-pointer"
+            className="h-11 px-4 min-w-[200px] text-xs sm:text-sm font-semibold rounded-xl border border-cloud-200 bg-white text-slate-700 shadow-xs focus:outline-none focus:ring-2 focus:ring-mint-500 cursor-pointer transition-all"
           >
             <option value="all">Semua Kategori</option>
             <option value="service">Service & Maintenance</option>
@@ -241,7 +241,7 @@ export default function VendorListClient({ initialData, canManage }: Props) {
           {canManage && (
             <button
               onClick={handleOpenCreate}
-              className="h-10 px-4 min-w-[200px] text-xs font-semibold rounded-xl bg-pale-100 hover:bg-pale-200 text-charcoal flex items-center justify-center gap-2 shadow-xs transition-all"
+              className="h-11 px-4 min-w-[200px] text-xs sm:text-sm font-semibold rounded-xl bg-pale-100 hover:bg-pale-200 text-charcoal flex items-center justify-center gap-2 shadow-xs transition-all"
             >
               <Plus className="w-4 h-4" />
               <span>Tambah Vendor</span>

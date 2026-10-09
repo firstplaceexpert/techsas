@@ -344,22 +344,22 @@ export default function ReportsClient({
       {/* Tab 1: Inventaris Aset */}
       {activeTab === 'inventory' && (
         <div className="space-y-4">
-          <div className="print:hidden card p-3 bg-slate-50/80 flex flex-col sm:flex-row items-center gap-3">
+          <div className="print:hidden card p-3.5 bg-slate-50/80 flex flex-col sm:flex-row items-center gap-3">
             <div className="relative flex-1 w-full">
-              <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+              <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
                 type="text"
                 placeholder="Cari kode atau nama aset..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-8 pr-3 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none"
+                className="w-full h-11 pl-10 pr-3.5 text-xs sm:text-sm rounded-xl border border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-mint-500 shadow-2xs transition-all"
               />
             </div>
 
             <select
               value={unitFilter}
               onChange={(e) => setUnitFilter(e.target.value)}
-              className="px-3 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none"
+              className="h-11 px-3.5 text-xs sm:text-sm font-semibold rounded-xl border border-slate-200 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-mint-500 cursor-pointer shadow-2xs transition-all"
             >
               <option value="">Semua Unit Bisnis</option>
               {businessUnits.map((u) => (
@@ -372,7 +372,7 @@ export default function ReportsClient({
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
-              className="px-3 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none"
+              className="h-11 px-3.5 text-xs sm:text-sm font-semibold rounded-xl border border-slate-200 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-mint-500 cursor-pointer shadow-2xs transition-all"
             >
               <option value="">Semua Kategori</option>
               {categories.map((c) => (
@@ -385,7 +385,7 @@ export default function ReportsClient({
             <select
               value={conditionFilter}
               onChange={(e) => setConditionFilter(e.target.value)}
-              className="px-3 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none"
+              className="h-11 px-3.5 text-xs sm:text-sm font-semibold rounded-xl border border-slate-200 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-mint-500 cursor-pointer shadow-2xs transition-all"
             >
               <option value="">Semua Kondisi</option>
               <option value="good">Baik</option>

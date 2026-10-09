@@ -35,12 +35,39 @@ export default function Header({
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [mounted, setMounted] = useState(false)
+  const [isScrolling, setIsScrolling] = useState(false)
+  const [isFocused, setIsFocused] = useState(false)
   const searchInputRef = useRef<HTMLInputElement>(null)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const mobilePortalRef = useRef<HTMLDivElement>(null)
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     setMounted(true)
+  }, [])
+
+  // Detect active scrolling to shrink search bar, expands back when idle
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolling(true)
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current)
+      }
+      scrollTimeoutRef.current = setTimeout(() => {
+        setIsScrolling(false)
+      }, 350)
+    }
+
+    document.addEventListener('scroll', handleScroll, { capture: true, passive: true })
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      document.removeEventListener('scroll', handleScroll, { capture: true })
+      window.removeEventListener('scroll', handleScroll)
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current)
+      }
+    }
   }, [])
 
   const handleCloseMenu = useCallback(() => {
@@ -212,15 +239,17 @@ export default function Header({
     </>
   )
 
+  const isShrunk = isScrolling && !isFocused && !searchQuery.trim()
+
   return (
     <>
-      <header className="h-11 sm:h-12 md:h-13 lg:h-14 bg-white/90 backdrop-blur-xl border border-cloud-200/90 rounded-full shadow-[0_4px_24px_-4px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.03)] inline-flex items-center gap-1.5 sm:gap-2 md:gap-3 lg:gap-3.5 px-2 sm:px-3 md:px-4 lg:px-5 transition-all duration-200 w-fit">
-        {/* Apple-style 2-Line Burger Menu Button (Layar Kecil / HP Saja) */}
+      <header className="h-11 sm:h-12 md:h-13 lg:h-14 bg-white/90 backdrop-blur-xl border border-cloud-200/90 rounded-full shadow-[0_4px_24px_-4px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.03)] inline-flex items-center gap-1.5 sm:gap-2 md:gap-3 lg:gap-3.5 px-2 sm:px-3 md:px-4 lg:px-5 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] w-fit">
+        {/* Apple-style 2-Line Burger Menu Button (Layar Ponsel & Tablet) */}
         <button
           type="button"
           onClick={handleToggleMenu}
           id="header-apple-menu-btn"
-          className="md:hidden w-8 h-8 rounded-full flex flex-col items-center justify-center gap-[5px] text-slate-700 hover:text-charcoal hover:bg-cloud-100 active:scale-95 transition-all group shrink-0"
+          className="lg:hidden w-8 h-8 rounded-full flex flex-col items-center justify-center gap-[5px] text-slate-700 hover:text-charcoal hover:bg-cloud-100 active:scale-95 transition-all group shrink-0"
           title={isMenuOpen ? 'Tutup Menu' : 'Buka Menu'}
           aria-expanded={isMenuOpen}
         >
@@ -238,27 +267,60 @@ export default function Header({
           />
         </button>
 
-        <div className="md:hidden w-px h-4 bg-cloud-200/80 shrink-0" />
+        <div className="lg:hidden w-px h-4 bg-cloud-200/80 shrink-0" />
 
-        {/* Global Search - Expands generously on laptop and desktop */}
+        {/* Global Search - Expands generously on laptop and desktop, shrinks dynamically while scrolling */}
         <form
           onSubmit={handleSearchSubmit}
-          className="relative flex items-center w-36 sm:w-48 md:w-80 lg:w-[480px] xl:w-[580px] transition-all"
+          onClick={() => {
+            if (isShrunk) {
+              searchInputRef.current?.focus()
+            }
+          }}
+          className={clsx(
+            'relative flex items-center transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]',
+            isShrunk
+              ? 'w-8 sm:w-9 md:w-9.5 lg:w-10 cursor-pointer'
+              : 'w-36 sm:w-48 md:w-80 lg:w-[480px] xl:w-[580px]'
+          )}
         >
-          <Search className="absolute left-2.5 sm:left-3 md:left-3.5 w-3.5 h-3.5 md:w-4 md:h-4 text-slate-400 pointer-events-none shrink-0" />
+          <Search
+            className={clsx(
+              'w-3.5 h-3.5 md:w-4 md:h-4 pointer-events-none shrink-0 transition-all duration-300',
+              isShrunk
+                ? 'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-charcoal'
+                : 'absolute left-2.5 sm:left-3 md:left-3.5 top-1/2 -translate-y-1/2 text-slate-400'
+            )}
+          />
           <input
             ref={searchInputRef}
             type="text"
             value={searchQuery}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Cari aset, nomor seri, lokasi, status..."
-            className="w-full pl-8 sm:pl-9 md:pl-10 pr-9 sm:pr-12 md:pr-14 py-1 md:py-2 text-xs md:text-sm bg-cloud-100/70 hover:bg-cloud-100 focus:bg-white text-charcoal placeholder:text-slate-400 rounded-full border border-cloud-200/80 focus:border-slate-400 focus:outline-none focus:ring-1 focus:ring-mint-500/50 transition-all"
+            placeholder={isShrunk ? '' : 'Cari aset, nomor seri, lokasi, status...'}
+            className={clsx(
+              'w-full py-1 md:py-2 text-xs md:text-sm bg-cloud-100/70 hover:bg-cloud-100 focus:bg-white text-charcoal rounded-full border border-cloud-200/80 focus:border-slate-400 focus:outline-none focus:ring-1 focus:ring-mint-500/50 transition-all duration-300 shadow-2xs',
+              isShrunk
+                ? 'h-8 sm:h-9 md:h-9 px-0 text-transparent placeholder:opacity-0 cursor-pointer'
+                : 'h-auto pl-8 sm:pl-9 md:pl-10 pr-9 sm:pr-12 md:pr-14 placeholder:text-slate-400'
+            )}
+            title={isShrunk ? 'Klik untuk mencari...' : undefined}
           />
-          <div className="absolute right-2 sm:right-2.5 md:right-3 flex items-center">
+          <div
+            className={clsx(
+              'absolute right-2 sm:right-2.5 md:right-3 flex items-center transition-all duration-200',
+              isShrunk ? 'opacity-0 scale-75 pointer-events-none' : 'opacity-100 scale-100'
+            )}
+          >
             {searchQuery ? (
               <button
                 type="button"
-                onClick={() => setSearchQuery('')}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setSearchQuery('')
+                }}
                 className="p-0.5 rounded-full hover:bg-cloud-200 text-slate-400 hover:text-charcoal transition-colors"
                 title="Hapus pencarian"
               >

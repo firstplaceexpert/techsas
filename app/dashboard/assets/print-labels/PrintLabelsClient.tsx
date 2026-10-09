@@ -163,20 +163,20 @@ export default function PrintLabelsClient({
           {/* Baris Filter: Cari, Unit Bisnis, Kategori */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
             <div className="relative">
-              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-stone-400" />
+              <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400" />
               <input
                 type="text"
                 placeholder="Cari kode semantik / nama aset..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-9 pr-3 py-2 text-xs bg-stone-50/60 hover:bg-white focus:bg-white border border-stone-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-500 transition-colors"
+                className="w-full h-11 pl-10 pr-3.5 text-xs sm:text-sm bg-white border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-mint-500 shadow-2xs transition-all"
               />
             </div>
 
             <select
               value={selectedUnit}
               onChange={(e) => setSelectedUnit(e.target.value)}
-              className="px-3 py-2 text-xs bg-stone-50/60 hover:bg-white focus:bg-white border border-stone-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-500 transition-colors text-stone-700"
+              className="h-11 px-3.5 text-xs sm:text-sm bg-white border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-mint-500 transition-all text-stone-700 cursor-pointer shadow-2xs"
             >
               <option value="">Semua Unit Bisnis</option>
               {businessUnits.map((u) => (
@@ -189,7 +189,7 @@ export default function PrintLabelsClient({
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-3 py-2 text-xs bg-stone-50/60 hover:bg-white focus:bg-white border border-stone-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-500 transition-colors text-stone-700"
+              className="h-11 px-3.5 text-xs sm:text-sm bg-white border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-mint-500 transition-all text-stone-700 cursor-pointer shadow-2xs"
             >
               <option value="">Semua Kategori</option>
               {categories.map((c) => (

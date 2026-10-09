@@ -188,7 +188,7 @@ export default function WorkOrderListClient({ initialData, vendors }: Props) {
                 setStatusFilter(e.target.value)
                 refreshList({ status: e.target.value, page: 1 })
               }}
-              className="h-9 px-3 text-xs font-semibold rounded-lg border border-slate-200 bg-slate-50 hover:bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500/20 cursor-pointer shadow-xs transition-colors"
+              className="h-11 px-3.5 text-xs sm:text-sm font-semibold rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500/20 cursor-pointer shadow-xs transition-colors"
             >
               <option value="all">Semua Status</option>
               <option value="pending">Menunggu Persetujuan</option>
@@ -206,7 +206,7 @@ export default function WorkOrderListClient({ initialData, vendors }: Props) {
                 setPriorityFilter(e.target.value)
                 refreshList({ priority: e.target.value, page: 1 })
               }}
-              className="h-9 px-3 text-xs font-semibold rounded-lg border border-slate-200 bg-slate-50 hover:bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500/20 cursor-pointer shadow-xs transition-colors"
+              className="h-11 px-3.5 text-xs sm:text-sm font-semibold rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500/20 cursor-pointer shadow-xs transition-colors"
             >
               <option value="all">Semua Prioritas</option>
               <option value="emergency">Emergency / Darurat</option>
@@ -222,7 +222,7 @@ export default function WorkOrderListClient({ initialData, vendors }: Props) {
                 setTypeFilter(e.target.value)
                 refreshList({ maintenanceType: e.target.value, page: 1 })
               }}
-              className="h-9 px-3 text-xs font-semibold rounded-lg border border-slate-200 bg-slate-50 hover:bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500/20 cursor-pointer shadow-xs transition-colors"
+              className="h-11 px-3.5 text-xs sm:text-sm font-semibold rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500/20 cursor-pointer shadow-xs transition-colors"
             >
               <option value="all">Semua Tipe</option>
               <option value="corrective">Korektif (Perbaikan)</option>
@@ -238,7 +238,7 @@ export default function WorkOrderListClient({ initialData, vendors }: Props) {
                 setVendorFilter(e.target.value)
                 refreshList({ vendorId: e.target.value, page: 1 })
               }}
-              className="h-9 px-3 text-xs font-semibold rounded-lg border border-slate-200 bg-slate-50 hover:bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500/20 cursor-pointer shadow-xs transition-colors"
+              className="h-11 px-3.5 text-xs sm:text-sm font-semibold rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500/20 cursor-pointer shadow-xs transition-colors"
             >
               <option value="all">Semua Rekanan</option>
               {vendors.map((v) => (
@@ -253,7 +253,7 @@ export default function WorkOrderListClient({ initialData, vendors }: Props) {
           
             <Link
               href="/dashboard/work-orders/new"
-              className="h-9 px-4 rounded-lg bg-pale-100 hover:bg-pale-200 text-charcoal font-semibold text-xs flex items-center justify-center gap-1.5 transition-all shadow-xs shrink-0"
+              className="h-11 px-4 rounded-xl bg-pale-100 hover:bg-pale-200 text-charcoal font-semibold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all shadow-xs shrink-0"
             >
               <Plus className="w-4 h-4" />
               <span>Buat WO Baru</span>

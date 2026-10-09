@@ -279,6 +279,17 @@ export default function AppleTopMenu({
               </div>
             ))}
           </div>
+
+          {/* Quick Close Button on Mobile & Tablet */}
+          <div className="flex justify-center pt-6 pb-2 lg:hidden">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-6 py-2.5 rounded-full bg-cloud-100 hover:bg-cloud-200 text-charcoal font-semibold text-xs border border-cloud-200/80 transition-colors shadow-2xs active:scale-95"
+            >
+              Tutup Menu
+            </button>
+          </div>
         </div>
       </div>
     </>,

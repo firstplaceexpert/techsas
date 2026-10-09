@@ -227,7 +227,7 @@ export default function AuditLogClient({ initialData }: Props) {
               <select
                 value={actionFilter}
                 onChange={(e) => handleActionChange(e.target.value)}
-                className="input text-xs sm:text-sm py-2 px-3 pr-8 w-full bg-white border-cloud-200 rounded-xl cursor-pointer hover:border-slate-300 focus:ring-mint-500"
+                className="input h-11 text-xs sm:text-sm px-3.5 pr-8 w-full bg-white border border-cloud-200 rounded-xl cursor-pointer hover:border-slate-300 focus:ring-mint-500 shadow-xs transition-all"
               >
                 <option value="all">Semua Aksi</option>
                 <option value="create">Create (Tambah)</option>
@@ -245,7 +245,7 @@ export default function AuditLogClient({ initialData }: Props) {
               <select
                 value={tableFilter}
                 onChange={(e) => handleTableChange(e.target.value)}
-                className="input text-xs sm:text-sm py-2 px-3 pr-8 w-full bg-white border-cloud-200 rounded-xl cursor-pointer hover:border-slate-300 focus:ring-mint-500"
+                className="input h-11 text-xs sm:text-sm px-3.5 pr-8 w-full bg-white border border-cloud-200 rounded-xl cursor-pointer hover:border-slate-300 focus:ring-mint-500 shadow-xs transition-all"
               >
                 <option value="all">Semua Modul</option>
                 <option value="assets">Aset</option>
@@ -268,7 +268,7 @@ export default function AuditLogClient({ initialData }: Props) {
                   setTableFilter('all')
                   refreshLogs({ search: '', action: 'all', tableName: 'all', page: 1 })
                 }}
-                className="btn btn-ghost btn-sm text-xs text-rose-600 hover:text-rose-700 hover:bg-rose-50 px-2.5 py-1.5 rounded-lg flex items-center gap-1 font-medium transition-colors"
+                className="h-11 px-3.5 rounded-xl text-xs sm:text-sm font-semibold text-rose-600 hover:text-rose-700 hover:bg-rose-50 flex items-center gap-1.5 transition-colors shadow-2xs border border-rose-200"
                 title="Reset semua filter"
               >
                 <X className="w-3.5 h-3.5" />

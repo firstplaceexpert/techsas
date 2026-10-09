@@ -125,13 +125,13 @@ export default function MaintenanceListClient({
       {/* Filter Toolbar */}
       <div className="card p-3.5 bg-slate-50/80 flex flex-col sm:flex-row items-center gap-3">
         <div className="relative flex-1 w-full">
-          <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+          <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
             placeholder="Cari nama aset, kode AMB, atau keluhan teknis..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-8 pr-3 py-2 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-500"
+            className="w-full h-11 pl-10 pr-3.5 text-xs sm:text-sm rounded-xl border border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-mint-500 shadow-2xs transition-all"
           />
         </div>
 
@@ -139,7 +139,7 @@ export default function MaintenanceListClient({
           <select
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value)}
-            className="px-3 py-2 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-500 flex-1 sm:flex-none"
+            className="h-11 px-3.5 text-xs sm:text-sm font-semibold rounded-xl border border-slate-200 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-mint-500 cursor-pointer shadow-2xs transition-all flex-1 sm:flex-none"
           >
             <option value="">Semua Status</option>
             <option value="scheduled">Terjadwal</option>
@@ -150,7 +150,7 @@ export default function MaintenanceListClient({
           <select
             value={selectedType}
             onChange={(e) => setSelectedType(e.target.value)}
-            className="px-3 py-2 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-500 flex-1 sm:flex-none"
+            className="h-11 px-3.5 text-xs sm:text-sm font-semibold rounded-xl border border-slate-200 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-mint-500 cursor-pointer shadow-2xs transition-all flex-1 sm:flex-none"
           >
             <option value="">Semua Tipe</option>
             <option value="corrective">Perbaikan Kerusakan</option>
